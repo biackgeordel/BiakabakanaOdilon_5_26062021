@@ -1,3 +1,4 @@
+import {tab} from './module/fonction.js';
 /*
 validNom:boolean
 validPrenom: boolean

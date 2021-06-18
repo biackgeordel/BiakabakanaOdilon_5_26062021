@@ -1,14 +1,5 @@
-//la fonction recupProduit permet de recuperer les produits stockés dans le localStorage
-console.log(localStorage.getItem("produitPanier"));
-function recupProduit() {
-  if (localStorage.getItem("produitPanier") === null) {
-    return null;
-  } else {
-    return JSON.parse(localStorage.getItem("produitPanier"));
-  }
-}
-//on crée un tableau tab  pour stocker les produits
-let tab = recupProduit();
+import {incrementerCompteur,tab} from './module/fonction.js';
+
 
 //afficherPanier() permet d'afficher les produits dans un tableau dans la page panier.html
 function afficherPanier(tab) {
@@ -37,9 +28,7 @@ function afficherPanier(tab) {
         <button  class=produit-${i}${i}>+</button>
         <button class=produit-${i}>${c}</button>
         <input 
-        type="text"value="${tab[i].quantite}" id="idProduit${i}"class="${
-        tab[i].id
-      }"/>
+        type="text"value="${tab[i].quantite}" id="idProduit${i}"class="${tab[i].id}"/>
         <span id=colorProduit${i}>
             ${tab[i].couleur}
             </span>
@@ -180,19 +169,4 @@ window.addEventListener("load", function (e) {
   console.log(e.target);
   afficherPanier(tab);
 });
-//test avant modules
-function incrementerCompteur() {
-  let compteur = 0;
-  let tab;
-  if (localStorage.getItem("produitPanier") !== null) {
-    tab = JSON.parse(localStorage.getItem("produitPanier"));
-    for (let i = 0; i < tab.length; i++) {
-      compteur += parseInt(tab[i].quantite, 10);
-    }
-    console.log("valeur compteur" + compteur);
-    localStorage.setItem("compteur", compteur);
-    document.querySelector(".bulle").innerText = `${localStorage.getItem(
-      "compteur"
-    )}`;
-  }
-}
+

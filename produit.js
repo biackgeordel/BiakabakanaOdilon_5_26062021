@@ -1,4 +1,4 @@
-
+import { afficherCompteur,incrementerCompteur } from './module/fonction.js';
 //recuperation de l'url avec location.href
 let urlProduit = window.location.href;
 console.log(urlProduit);
@@ -39,7 +39,7 @@ tab = color.match(regex);
 console.log(tab.length);
 console.log(tab);
 //on ajoute les couleurs dans la balise select
-for (couleur of tab) {
+for (let couleur of tab) {
   option = document.createElement("option");
   option.innerText = `${couleur}`;
   selectOption.appendChild(option);
@@ -62,7 +62,7 @@ document.querySelector(".btn-panier").addEventListener("mouseout", (e) => {
 
 //ajout des produits dans le localStorage
 function envoiLocalStorage(nom, price, description, id) {
-  colorSelect = document.querySelector("#couleur").value;
+  let colorSelect = document.querySelector("#couleur").value;
 
   if (colorSelect === "Couleur") {
     colorSelect = "inconnue";
@@ -108,31 +108,9 @@ function envoiLocalStorage(nom, price, description, id) {
     }
   }
 }
-//incrementer le compteur
- function incrementerCompteur() {
-  let compteur = 0;
-  let tab;
-  if (localStorage.getItem("produitPanier") !== null) {
-    tab = JSON.parse(localStorage.getItem("produitPanier"));
-    for (let i = 0; i < tab.length; i++) {
-      compteur += parseInt(tab[i].quantite, 10);
-    }
-    console.log("valeur compteur" + compteur);
-    localStorage.setItem("compteur", compteur);
-    document.querySelector(".bulle").innerText = `${localStorage.getItem(
-      "compteur"
-    )}`;
-  }
-}
 
-//afficher le compteur sur la page produit
-function afficherCompteur() {
-  if (localStorage.getItem("compteur") !== null) {
-    document.querySelector(".bulle").innerText = `${localStorage.getItem(
-      "compteur"
-    )}`;
-  }
-}
+
+
 
 //localStorage.removeItem("produitPanier");
 //localStorage.removeItem("compteur");
