@@ -13,7 +13,7 @@ let validEmail;
 let validCity;
 
 function afficherFormulaire(tab) {
-  if (tab !== null || tab.length !== 0) {
+  if (tab!==null || tab.length!==0) {
     let titre = document.createElement("h2");
     titre.innerText = "Information du client";
     let form = document.createElement("form");
@@ -73,7 +73,7 @@ function afficherFormulaire(tab) {
     console.log("le tableau n'est pas disponible");
   }
 }
-afficherFormulaire(tab);
+afficherFormulaire(0);
 //verification du nom du client
 document.querySelector("#firstName").addEventListener("input", function (e) {
   let regex = new RegExp(/^[a-zA-Z]+[\s(a-zA-Z)]+$/);
@@ -159,6 +159,7 @@ document.querySelector(".btn").addEventListener("click", function (e) {
     console.log(document.querySelector(".btn+div").innerText);
   }
 });
+
 /*la fonction commanderProduit recupererles informations du client 
 et le tableau des produits qui seront stockés dans un localStorage afin d'être envoyer à l'API */
 function commanderProduit() {

@@ -36,8 +36,6 @@ let regex = /[a-z\s|A-Z\s]+/g;
 let tab;
 //on recuperer les couleurs dans un  tableau
 tab = color.match(regex);
-console.log(tab.length);
-console.log(tab);
 //on ajoute les couleurs dans la balise select
 for (let couleur of tab) {
   option = document.createElement("option");
@@ -98,10 +96,8 @@ function envoiLocalStorage(nom, price, description, id) {
       }
     }
     if (test) {
-      console.log("element existe");
       localStorage.setItem("produitPanier", JSON.stringify(tab));
     } else {
-      console.log("element n'existe pas");
       tab.push(prod);
       localStorage.setItem("produitPanier", JSON.stringify(tab));
       test = false;
@@ -112,5 +108,4 @@ function envoiLocalStorage(nom, price, description, id) {
 
 
 
-//localStorage.removeItem("produitPanier");
-//localStorage.removeItem("compteur");
+

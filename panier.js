@@ -1,4 +1,4 @@
-import {incrementerCompteur,tab} from './module/fonction.js';
+import {incrementerCompteur,tab, viderPanier} from './module/fonction.js';
 
 
 //afficherPanier() permet d'afficher les produits dans un tableau dans la page panier.html
@@ -138,6 +138,13 @@ document.querySelector(".body-tab").addEventListener("click", function (e) {
     localStorage.setItem("produitPanier", JSON.stringify(tab)); //on enregistre le nouveau tab dans le localStorage
     incrementerCompteur(); //mise à jour du compteur
   }
+});
+
+//supprimer le panier
+document.querySelector(".btn-vide").addEventListener("click",function(e){
+  viderPanier();
+  document.location.href="panier.html";
+
 });
 
 //modifier la quantite du produit avec l'event change

@@ -68,9 +68,13 @@ function afficherCommande(info){
     </th>
     <td colspan=2 >${resultat} €</td>
     </tr>`;
-
-
-
-
+    localStorage.removeItem("produitPanier");
+    localStorage.removeItem("compteur");
 }
+
+  window.setTimeout(function(){
+
+    window.location.href="./index.html";
+  },30000);
+
  
