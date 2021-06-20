@@ -1,4 +1,4 @@
-import {incrementerCompteur,tab, viderPanier} from './module/fonction.js';
+import {incrementerCompteur,tab} from './module/fonction.js';
 
 
 //afficherPanier() permet d'afficher les produits dans un tableau dans la page panier.html
@@ -139,11 +139,24 @@ document.querySelector(".body-tab").addEventListener("click", function (e) {
     incrementerCompteur(); //mise à jour du compteur
   }
 });
-
+//supprimer tout le panier
+function viderPanier(tab){
+  if(tab.length!==0){
+    console.log(true);
+    tab.pop();
+    return viderPanier(tab);
+  }else{
+    console.log(false);
+    console.log(tab);
+    localStorage.setItem("produitPanier", JSON.stringify(tab));
+    incrementerCompteur(); 
+    afficherPanier(tab);
+  }
+}
 //supprimer le panier
 document.querySelector(".btn-vide").addEventListener("click",function(e){
-  viderPanier();
-  document.location.href="panier.html";
+  viderPanier(tab);
+
 
 });
 

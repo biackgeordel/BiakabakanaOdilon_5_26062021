@@ -11,6 +11,7 @@ let validPrenom;
 let valideAdress;
 let validEmail;
 let validCity;
+afficherFormulaire(tab);
 
 function afficherFormulaire(tab) {
   if (tab!==null || tab.length!==0) {
@@ -73,7 +74,7 @@ function afficherFormulaire(tab) {
     console.log("le tableau n'est pas disponible");
   }
 }
-afficherFormulaire(0);
+
 //verification du nom du client
 document.querySelector("#firstName").addEventListener("input", function (e) {
   let regex = new RegExp(/^[a-zA-Z]+[\s(a-zA-Z)]+$/);

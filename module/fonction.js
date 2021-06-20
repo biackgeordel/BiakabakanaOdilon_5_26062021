@@ -35,9 +35,3 @@ function recupProduit() {
 //on crée un tableau tab  pour stocker les produits
 export let tab = recupProduit();
 //fonction pour supprimer les produits stockés dans le localStorage qui correspondent au contenu du panier
-
-export function viderPanier(){
-localStorage.removeItem("produitPanier");
-localStorage.removeItem("compteur");
-
-}
