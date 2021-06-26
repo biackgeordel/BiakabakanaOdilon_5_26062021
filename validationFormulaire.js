@@ -11,6 +11,7 @@ let validPrenom;
 let valideAdress;
 let validEmail;
 let validCity;
+console.log(tab);
 afficherFormulaire(tab);
 
 function afficherFormulaire(tab) {
@@ -73,6 +74,7 @@ function afficherFormulaire(tab) {
   } else {
     console.log("le tableau n'est pas disponible");
   }
+
 }
 
 //verification du nom du client

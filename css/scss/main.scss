@@ -244,14 +244,10 @@ h3{
   text-align: center;
 }
 
-
-
-
 table {
   text-align: center;
   @media (max-width: 980px) {
     font-size: 1.5vw;
-   
   }
 }
 .btn-vide{
@@ -277,7 +273,14 @@ table {
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 
   @media (max-width: 980px) {
-    font-size: 1.5vw;
+    font-size: 1.6vw;
+    top:5vw;
+    margin-left:0.5em;
+   
+  }
+  @media (max-width: 650px) {
+    top:6vw;
+    margin-left:-1em;
    
   }
   
@@ -415,6 +418,7 @@ table {
   opacity:0;
   background-color: white;
   animation: cont-spinner 3s ease-in-out backwards;
+
 }
 .lds-ring {
   display: inline-block;
@@ -423,6 +427,13 @@ table {
   left:45%;
   width: 224px;
   height: 224px;
+  @media (max-width:980px) {
+    top:50%;
+    left:30%;
+    width: 30vw;
+    height: 30vw;
+    
+  }
 }
 .lds-ring div {
   box-sizing: border-box;
@@ -430,6 +441,11 @@ table {
   position: absolute;
   width: 204px;
   height: 204px;
+  @media (max-width:980px) {
+    width: 30vw;
+    height: 30vw;
+    
+  }
   margin: 8px;
   border: 10px solid rgb(162, 209, 162);
   border-radius: 50%;

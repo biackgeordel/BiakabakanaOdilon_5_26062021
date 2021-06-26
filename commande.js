@@ -1,7 +1,9 @@
 let cont = JSON.parse(localStorage.getItem("commandeContact"));
 let prod=(localStorage.getItem("produit"));
 let tab=[];
+let urlOrder=localStorage.getItem("urlOrder")!==null?localStorage.getItem("urlOrder"):"http://localhost:3000/api/teddies/order";
 prod=prod.match(/[a-z0-9]+/g);
+console.log(urlOrder);
 let command={
   contact:{
     "firstName":`${cont.firstName}`,
@@ -13,7 +15,7 @@ let command={
   products:prod
 };
 
-fetch("http://localhost:3000/api/teddies/order",{
+fetch(urlOrder,{
   method:"POST",
   headers:{
     'Accept':"application/json",
@@ -37,6 +39,7 @@ fetch("http://localhost:3000/api/teddies/order",{
 });
 function afficherCommande(info){
   let div=document.createElement("div");
+  document.querySelector(".option").innerText=`${localStorage.getItem("option")}`;
   let bodyTable = document.querySelector(".body-tab");
   let footTable = document.querySelector(".foot-tab");
   let resultat = 0;
@@ -72,9 +75,5 @@ function afficherCommande(info){
     localStorage.removeItem("compteur");
 }
 
-  window.setTimeout(function(){
-
-    window.location.href="./index.html";
-  },30000);
 
  

@@ -27,7 +27,7 @@ export function afficherCompteur() {
   //la fonction recupProduit permet de recuperer les produits stockés dans le localStorage
 function recupProduit() {
   if (localStorage.getItem("produitPanier") === null) {
-    return null;
+    return null || [];
   } else {
     return JSON.parse(localStorage.getItem("produitPanier"));
   }

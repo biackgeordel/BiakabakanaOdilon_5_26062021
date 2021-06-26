@@ -12,6 +12,11 @@ function afficherPanier(tab) {
       `<h2 class="info-panier">Votre panier est vide</h2>
       <div class="panier-vide"><i class="fas fa-shopping-cart"></i></div>`;
   } else {
+    if(localStorage.getItem("option")!=null){
+      document.querySelector(".option").innerText=`${localStorage.getItem("option")}`;
+    }else{
+      document.querySelector(".option").innerText="couleur";
+    }
     bodyTable.innerHTML = "";
     for (let i = 0; i < tab.length; i++) {
       tab[i].quantite === 1 ? (c = "X") : (c = "-");

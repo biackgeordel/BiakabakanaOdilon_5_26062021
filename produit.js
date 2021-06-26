@@ -2,8 +2,8 @@ import { afficherCompteur,incrementerCompteur } from './module/fonction.js';
 //recuperation de l'url avec location.href
 let urlProduit = window.location.href;
 console.log(urlProduit);
-//balise select qui va contenir les couleur
-let selectOption = document.querySelector("#couleur");
+//balise select qui va contenir les options
+let selectOption = document.querySelector("#optionProduit");
 //balise option de select
 let option;
 //on crée une instance url
@@ -12,7 +12,7 @@ urlProduit = new URL(urlProduit);
 let id = urlProduit.searchParams.get("id");
 let nom = urlProduit.searchParams.get("name");
 let image = urlProduit.searchParams.get("image");
-let color = urlProduit.searchParams.get("color");
+let optionProd = urlProduit.searchParams.get("option");
 let description = urlProduit.searchParams.get("description");
 let price = urlProduit.searchParams.get("price") / 100;
 
@@ -31,15 +31,25 @@ let descriptionProduit = document.querySelector(".card-text");
 descriptionProduit.innerText = `${description}`;
 
 //expression reguliere pour recuperer les couleurs dans la variable color
-let regex = /[a-z\s|A-Z\s]+/g;
-//tab qui va stocker les couleurs
-let tab;
-//on recuperer les couleurs dans un  tableau
-tab = color.match(regex);
-//on ajoute les couleurs dans la balise select
-for (let couleur of tab) {
+let regex = /[.-\/0-9a-z\s|.\-\/0-9A-Z\s]+/g;
+//tab qui va stocker les options du produits
+let tabOption;
+//on recuperer les  options dans un  tableau
+console.log(optionProd);
+tabOption= optionProd.match(regex);
+console.log(tabOption);
+//on recupere l'option en fonction du produit choisi
+if(localStorage.getItem("option")!==null){
+  document.querySelector("#optChoix").innerText=`${localStorage.getItem("option")}`;
+}else{
+  document.querySelector("#optChoix").innerText="Couleur";
+}
+
+//on ajoute la liste d'option dans la balise select
+for (let OptionProduit of tabOption) {
   option = document.createElement("option");
-  option.innerText = `${couleur}`;
+  option.innerText = `${OptionProduit}`;
+  console.log(OptionProduit);
   selectOption.appendChild(option);
 }
 //affiche compteur du panier
@@ -60,9 +70,9 @@ document.querySelector(".btn-panier").addEventListener("mouseout", (e) => {
 
 //ajout des produits dans le localStorage
 function envoiLocalStorage(nom, price, description, id) {
-  let colorSelect = document.querySelector("#couleur").value;
+  let colorSelect = document.querySelector("#optionProduit").value;
 
-  if (colorSelect === "Couleur") {
+  if (colorSelect === "lentille"||colorSelect==="Couleur") {
     colorSelect = "inconnue";
   }
   console.log(colorSelect);
