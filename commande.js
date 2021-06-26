@@ -39,7 +39,8 @@ fetch(urlOrder,{
 });
 function afficherCommande(info){
   let div=document.createElement("div");
-  document.querySelector(".option").innerText=`${localStorage.getItem("option")}`;
+  document.querySelector(".option").innerText=`${localStorage.getItem("option")!==null?
+  localStorage.getItem("option"):"Couleur"}`;
   let bodyTable = document.querySelector(".body-tab");
   let footTable = document.querySelector(".foot-tab");
   let resultat = 0;
