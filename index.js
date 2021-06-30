@@ -2,24 +2,31 @@
 import { afficherCompteur,tab} from "./module/fonction.js";
 let bloc = document.createElement("div");
 bloc.classList.add("container");
+//url qui sera soumis à l'API en fonction du produit choix
 let url;
+//section qui contenir les informations du produit
 let sectionArticle = document.querySelector("#sectionArticle");
+//balise h2 qui va contenir le titre des produits
+let h2=document.createElement("h2");
 
+//retourne l'url en fonction du produit choisi
 function createUrl(val){
   return  `http://localhost:3000/api/${val}`;
   
 }
 
-
-document.querySelector(".btn-recherche").addEventListener("click",function(){
+//event qui sera declenche lors du changement du produit en cliquant sur le bouton rechercher
+document.querySelector(".btn-recherche").addEventListener("click",function(e){
   validChoixProduit();
   
-
 });
 
 //** validChoixProduit fonction appelée pour valider le choix du client dans l'input */
-  function validChoixProduit(){
+   function validChoixProduit(){
     if(tab.length===0){
+      console.log( document.querySelector(".btn-recherche").getAttribute(" data-toggle"));
+      document.querySelector(".btn-recherche").removeAttribute(" data-toggle");
+      document.querySelector(".btn-recherche").removeAttribute("data-target");
   //on recupere le nom du produit saisi par le client
   let inputSearch=document.querySelector("input[type=search]").value;
   //tableau contenant les noms des produit 
@@ -41,7 +48,7 @@ document.querySelector(".btn-recherche").addEventListener("click",function(){
     if(inputSearch==="furniture"){
       localStorage.setItem("option","Couleur");//creation de l'option dans le localStorage
       //titre correspondant au produit furniture
-      document.querySelector("h2").innerText="Notre selection de meubles vintages ";
+      h2.innerText="Notre selection de meubles vintages ";
       //on enregistre le titre dans le localStorage
         localStorage.setItem("titre","Notre selection de meubles vintages ");
        
@@ -54,7 +61,7 @@ document.querySelector(".btn-recherche").addEventListener("click",function(){
        //creation de l'option dans le localStorage
        localStorage.setItem("option","Couleur");
        //titre correspondant au produit peluche
-       document.querySelector("h2").innerText="Ours en peluche faites à la main ";
+       h2.innerText="Ours en peluche faites à la main ";
        //on enregistre le titre dans le localStorage
         localStorage.setItem("titre","Ours en peluche faites à la main ");
       }
@@ -64,7 +71,7 @@ document.querySelector(".btn-recherche").addEventListener("click",function(){
     {
       inputSearch="cameras";//changement du nom de produit pour la création de l'url
     //titre correspondant au produit camera  
-    document.querySelector("h2").innerText="Nôtre selection de caméras à prix reduit";
+    h2.innerText="Nôtre selection de caméras à prix reduit";
      //creation de l'option dans le localStorage
     localStorage.setItem("option","Lentille");
     //on enregistre le titre dans le localStorage
@@ -80,9 +87,14 @@ document.querySelector(".btn-recherche").addEventListener("click",function(){
     recuperArticle(url);
     //message qui sera affiché si le produit n'existe pas dans le tableau des produits
  
-  }else {document.querySelector("h2").innerText=`le produit ${inputSearch} est indisponible`}
+  }else {h2.innerText=`le produit ${inputSearch} est indisponible`}
   }else{
-    alert("vous devez vider le panier pour changer le produit");
+    try{
+    document.querySelector(".btn-recherche").setAttribute(" data-toggle","modal");
+    dicument.querySelector(".btn-recherche").setAttribute("data-target","exampleModal");
+    }catch(error){
+      console.log("erreur");
+    }
   }
 
 }
@@ -92,10 +104,10 @@ document.querySelector(".btn-recherche").addEventListener("click",function(){
 async function recuperArticle(url) {
   let tab= await accesApi(url);
   if(localStorage.getItem("titre")!==null){
-    document.querySelector("h2").innerHTML=`${localStorage.getItem("titre")}`;
+    h2.innerHTML=`${localStorage.getItem("titre")}`;
 
   }else{
-    document.querySelector("h2").innerText="Ours en peluche faites à la main ";
+    h2.innerText="Ours en peluche faites à la main ";
   }
  
   console.log(tab);
@@ -128,29 +140,34 @@ async function recuperArticle(url) {
 }
 //fonction pour se connecte à l'API
 async function accesApi(url){
+  console.log("la valeur de url "+url);
   let response;
   url=localStorage.getItem("url");
-  let urlProduit
-  if(url==undefined ||null){
-    urlProduit="http://localhost:3000/api/teddies";//url par defaut
-    console.log(urlProduit);
-    response=await fetch(urlProduit);
+  console.log("la valeur de url "+url);
+ 
+  if(url===null){
+    console.log("la valeur de url1 "+url);
+    url="http://localhost:3000/api/teddies";//url par defaut
+    console.log(url);
+    response=await fetch(url);
     return response.json();
 
    
   }else{
-    urlProduit=url;
-    response=await fetch(urlProduit);
+    
+    response=await fetch(url);
     return  response.json();
 
    
   }
 }
+sectionArticle.appendChild(h2);
 sectionArticle.appendChild(bloc);
-//fonction qui affiche le compteur du en fonction de la quantite des produits
+//fonction qui affiche le compteur du panieren fonction de la quantite des produits
 afficherCompteur();
 //fonction pour afficher les produits stockés dans l'API
 recuperArticle(url);
+
 
 
 

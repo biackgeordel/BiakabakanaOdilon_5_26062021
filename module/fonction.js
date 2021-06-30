@@ -5,6 +5,10 @@ export function afficherCompteur() {
       document.querySelector(".bulle").innerText = `${localStorage.getItem(
         "compteur"
       )}`;
+      console.log("valeur de bulle"+document.querySelector(".bulle").innerText);
+    }else{
+      console.log("valeur de bulle"+document.querySelector(".bulle").innerText);
+      document.querySelector(".bulle").innerText =" ";
     }
   }
   //incrementer le compteur en tenant de la quantite dans le localStorage
@@ -27,7 +31,7 @@ export function afficherCompteur() {
   //la fonction recupProduit permet de recuperer les produits stockés dans le localStorage
 function recupProduit() {
   if (localStorage.getItem("produitPanier") === null) {
-    return null || [];
+    return [];
   } else {
     return JSON.parse(localStorage.getItem("produitPanier"));
   }

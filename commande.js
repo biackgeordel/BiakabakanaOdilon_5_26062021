@@ -1,9 +1,19 @@
+//on recupère les informations saisis par le client stockés dans le localStorage
 let cont = JSON.parse(localStorage.getItem("commandeContact"));
+
+//on recupère un tableau contenant les id des produits 
 let prod=(localStorage.getItem("produit"));
-let tab=[];
-let urlOrder=localStorage.getItem("urlOrder")!==null?localStorage.getItem("urlOrder"):"http://localhost:3000/api/teddies/order";
+
+/*on recupère l'url qui sera soumis à l'API 
+si elle existe sinon url par default
+ contenant le produit teddies sera soumis à l'API*/
+let urlOrder=localStorage.getItem("urlOrder")!==null?
+localStorage.getItem("urlOrder"):"http://localhost:3000/api/teddies/order";
+//*on recupere les id dans prod en eliminant les espaces 
 prod=prod.match(/[a-z0-9]+/g);
-console.log(urlOrder);
+/*objet command qui va contenir les informations 
+du client ainsi les le tableau des id des produits
+ qui seront soumis à l'API*/
 let command={
   contact:{
     "firstName":`${cont.firstName}`,
@@ -37,6 +47,11 @@ fetch(urlOrder,{
 }).catch((error)=>{
   console.log(error);
 });
+/*
+afficherCommande va recupere les données
+ retournées par l'API et les affiche dans la page de commande.html 
+ ainsi les informations de la commande stockées dans le localStorage avant leurs suppresions
+*/
 function afficherCommande(info){
   let div=document.createElement("div");
   document.querySelector(".option").innerText=`${localStorage.getItem("option")!==null?

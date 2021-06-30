@@ -22,7 +22,7 @@ nomProduit.innerText = `${nom}`;
 
 //balise contenant le prix du produit
 let priceProduit = document.querySelector(".priceProduit");
-priceProduit.innerHTML = `<strong>Prix : ${price} euros</strong>`;
+priceProduit.innerHTML = `<strong>Prix : ${price} €</strong>`;
 //la balise contenant l'image du produit
 let imageProduit = document.querySelector(".card-img-top");
 imageProduit.setAttribute("src", image);
@@ -30,7 +30,7 @@ imageProduit.setAttribute("src", image);
 let descriptionProduit = document.querySelector(".card-text");
 descriptionProduit.innerText = `${description}`;
 
-//expression reguliere pour recuperer les couleurs dans la variable color
+//expression reguliere pour recuperer les options contenu dans la variable optionProd
 let regex = /[.-\/0-9a-z\s|.\-\/0-9A-Z\s]+/g;
 //tab qui va stocker les options du produits
 let tabOption;
@@ -52,7 +52,7 @@ for (let OptionProduit of tabOption) {
   console.log(OptionProduit);
   selectOption.appendChild(option);
 }
-//affiche compteur du panier
+//affiche le  compteur du panier
 afficherCompteur();
 
 //bouton pour ajouter des produits dans le locaStorage
@@ -72,7 +72,7 @@ document.querySelector(".btn-panier").addEventListener("mouseout", (e) => {
 function envoiLocalStorage(nom, price, description, id) {
   let colorSelect = document.querySelector("#optionProduit").value;
 
-  if (colorSelect === "lentille"||colorSelect==="Couleur") {
+  if (colorSelect === "Lentille"||colorSelect==="Couleur") {
     colorSelect = "inconnue";
   }
   console.log(colorSelect);
@@ -85,7 +85,7 @@ function envoiLocalStorage(nom, price, description, id) {
     description: description,
     nom: nom,
     image: image,
-    couleur: colorSelect,
+    couleur: colorSelect
   };
   let test = false;
 

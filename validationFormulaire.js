@@ -163,8 +163,8 @@ document.querySelector(".btn").addEventListener("click", function (e) {
   }
 });
 
-/*la fonction commanderProduit recupererles informations du client 
-et le tableau des produits qui seront stockés dans un localStorage afin d'être envoyer à l'API */
+/*la fonction commanderProduit recuperer les informations du client 
+et le tableau id des produits qui seront stockés dans un localStorage afin d'être envoyer à l'API */
 function commanderProduit() {
   let product_id = [];//tableau contenant les id des produits
   let contact;//objet contenant les informations du client
